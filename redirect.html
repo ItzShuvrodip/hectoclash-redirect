@@ -17,6 +17,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const gameCode = urlParams.get('gameCode');
             const appScheme = 'hectoclash://game/join/';
+            const githubApkUrl = 'https://github.com/suryanshukla592/HectoClash/releases';
             const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.example.hectoclash'; // Replace with your Play Store URL
             let redirectUrl;
             if (gameCode) {
@@ -38,7 +39,6 @@
                             document.body.innerHTML = `
                                 <h1>HectoClash</h1>
                                 <p>Please open the app or download it from your store.</p>
-                                <p><a href="${playStoreUrl}" style="color: #00bcd4;">Get it on Google Play</a></p>
                                 <p>Or <a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
                             `;
                         }
