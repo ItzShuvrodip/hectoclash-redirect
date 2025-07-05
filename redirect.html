@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HectoClash Game Invite</title> <meta property="og:title" content="Join a HectoClash Game!">
     <meta property="og:description" content="Challenge your friends in HectoClash, the ultimate math puzzle game! Tap to join.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/suryanshukla592/HectoClash/refs/heads/master/app/src/main/res/drawable/logo.png">
+    <meta property="og:image" content="https://itzshuvrodip.github.io/hectoclash-redirect/header.png">
     <meta property="og:url" content="https://itzshuvrodip.github.io/hectoclash-redirect/redirect.html">
     <meta property="og:type" content="game.battle"> <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Join a HectoClash Game!">
@@ -35,8 +35,13 @@
                     if (/android/i.test(userAgent)) {
                         window.location.href = playStoreUrl;
                     } else {
-                        document.body.innerHTML = '<h1>HectoClash</h1><p>Please open the app or download it from your app store.</p>';
-                    }
+                            document.body.innerHTML = `
+                                <h1>HectoClash</h1>
+                                <p>Please open the app or download it from your store.</p>
+                                <p><a href="${playStoreUrl}" style="color: #00bcd4;">Get it on Google Play</a></p>
+                                <p>Or <a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
+                            `;
+                        }
                 }
             }, 2500); // Give the app 2.5 seconds to open
         });
