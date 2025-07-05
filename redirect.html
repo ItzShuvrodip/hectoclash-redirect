@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HectoClash Redirect</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        // Get the gameCode from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameCode = urlParams.get('gameCode');
+
+        // Construct your custom URI scheme link
+        // ENSURE THIS MATCHES YOUR AndroidManifest.xml DEEP LINK CONFIGURATION
+        const customUri = `hectoclash://game/join/${gameCode}`;
+
+        // Attempt to open the custom URI scheme
+        window.location.replace(customUri);
+
+        // Optional: Fallback to Play Store if the app doesn't open
+        setTimeout(function() {
+            // IMPORTANT: REPLACE 'YOUR_APP_PACKAGE_NAME' WITH YOUR ACTUAL APP'S PACKAGE ID
+            window.location.replace("https://play.google.com/store/apps/details?id=com.example.hectoclash");
+        }, 1500); // Wait 1.5 seconds before redirecting to Play Store
+    </script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Loading HectoClash...</h1>
+    <p>If the app doesn't open automatically:</p>
+    <p><a id="fallbackLink" href="#">Click here to launch the game directly</a></p>
+    <p>Or <a href="https://play.google.com/store/apps/details?id=com.example.hectoclash">get HectoClash from the Play Store</a>.</p>
+    <script>
+        // Set the href for the direct launch link after customUri is defined
+        document.getElementById('fallbackLink').href = customUri;
+    </script>
+</body>
+</html>
