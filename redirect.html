@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HectoClash Game Invite</title> <meta property="og:title" content="Join a HectoClash Game!">
+    <title>HectoClash Game Invite</title>
+    <meta property="og:title" content="Join a HectoClash Game!">
     <meta property="og:description" content="Challenge your friends in HectoClash, the ultimate math puzzle game! Tap to join.">
     <meta property="og:image" content="https://itzshuvrodip.github.io/hectoclash-redirect/header.png">
     <meta property="og:url" content="https://itzshuvrodip.github.io/hectoclash-redirect/redirect.html">
-    <meta property="og:type" content="game.battle"> <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="game.battle">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Join a HectoClash Game!">
     <meta name="twitter:description" content="Challenge your friends in HectoClash, the ultimate math puzzle game! Tap to join.">
     <meta name="twitter:image" content="https://itzshuvrodip.github.io/hectoclash-redirect/images/hectoclash_logo.png">
     <script>
-        // Your existing JavaScript for redirection
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const gameCode = urlParams.get('gameCode');
             const appScheme = 'hectoclash://game/join/';
             const githubApkUrl = 'https://github.com/suryanshukla592/HectoClash/releases';
-            const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.example.hectoclash'; // Replace with your Play Store URL
+            const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.example.hectoclash';
             let redirectUrl;
             if (gameCode) {
                 redirectUrl = appScheme + gameCode;
@@ -31,24 +32,34 @@
 
             // Fallback to app store after a delay if app doesn't open
             setTimeout(function () {
-            if (document.visibilityState === 'visible') {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                if (/android/i.test(userAgent)) {
-                    window.location.href = playStoreUrl;
-                } else {
-                    document.body.innerHTML = `
-                        <h1>Redirecting to HectoClash...</h1>
-                        <p>If the app does not open, please ensure it is installed.</p>
-                        <p><a href="${playStoreUrl}" style="color: #00bcd4;">Get it on Google Play</a></p>
-                        <p><a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
-                    `;
+                if (document.visibilityState === 'visible') {
+                    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                    if (/android/i.test(userAgent)) {
+                        document.body.innerHTML = `
+                            <h1>Redirecting to HectoClash...</h1>
+                            <p>If the app does not open, please ensure it is installed.</p>
+                            <p><a href="${playStoreUrl}" style="color: #00bcd4;">Get it on Google Play</a></p>
+                            <p><a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
+                        `;
+                    } else {
+                        document.body.innerHTML = `
+                            <h1>Redirecting to HectoClash...</h1>
+                            <p>If the app does not open, please ensure it is installed.</p>
+                            <p><a href="${playStoreUrl}" style="color: #00bcd4;">Get it on Google Play</a></p>
+                            <p><a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
+                        `;
+                    }
                 }
+            }, 2500);
+
+            // Set the href for the GitHub APK link outside the timeout for initial load
+            const githubLink = document.getElementById('github-apk-link');
+            if (githubLink) {
+                githubLink.href = githubApkUrl;
             }
-        }, 2500);
-    });
+        });
     </script>
     <style>
-        /* Your existing CSS for the redirect page */
         body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #1a1a2e; color: #e0e0e0; }
         h1 { color: #00bcd4; }
         p { color: #c0c0c0; }
@@ -58,6 +69,6 @@
     <h1>Redirecting to HectoClash...</h1>
     <p>If the app does not open, please ensure it is installed.</p>
     <p><a href="https://play.google.com/store/apps/details?id=com.example.hectoclash" style="color: #00bcd4;">Get it on Google Play</a></p>
-     <p>Or <a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
-    </body>
+    <p>Or <a id="github-apk-link" href="#" style="color: #00bcd4;">Download APK from GitHub</a></p>
+</body>
 </html>
