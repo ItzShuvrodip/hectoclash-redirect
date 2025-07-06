@@ -30,21 +30,22 @@
             window.location.href = redirectUrl;
 
             // Fallback to app store after a delay if app doesn't open
-            setTimeout(function() {
-                if (document.visibilityState === 'visible') { // Imperfect check for app not opening
-                    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                    if (/android/i.test(userAgent)) {
-                        window.location.href = playStoreUrl;
-                    } else {
-                            document.body.innerHTML = `
-                                <h1>Redirecting to HectoClash...</h1>
-                                <p>If the app does not open, please ensure it is installed.</p>
-                                <p>Or <a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
-                            `;
-                        }
+            setTimeout(function () {
+            if (document.visibilityState === 'visible') {
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                if (/android/i.test(userAgent)) {
+                    window.location.href = playStoreUrl;
+                } else {
+                    document.body.innerHTML = `
+                        <h1>Redirecting to HectoClash...</h1>
+                        <p>If the app does not open, please ensure it is installed.</p>
+                        <p><a href="${playStoreUrl}" style="color: #00bcd4;">Get it on Google Play</a></p>
+                        <p><a href="${githubApkUrl}" style="color: #00bcd4;">Download APK from GitHub</a></p>
+                    `;
                 }
-            }, 2500); // Give the app 2.5 seconds to open
-        });
+            }
+        }, 2500);
+    });
     </script>
     <style>
         /* Your existing CSS for the redirect page */
